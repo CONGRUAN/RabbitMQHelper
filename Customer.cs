@@ -110,7 +110,9 @@ namespace RabbitMQReciever
                         }
                         catch (Exception)
                         {
-                            //异常的话重新处理
+                            //异常的话重新处理或者重回队列
+                            //......
+                            channel.BasicReject(ea.DeliveryTag,true);
                         }
                     };
                     //手动确认，autoAck设置false,告诉broker，发送消息之后，消息暂时不要删除，等消费者处理完成再说
